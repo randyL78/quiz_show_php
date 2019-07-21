@@ -1,7 +1,31 @@
 <?php
-/*
+/**
  * PHP Techdegree Project 2: Build a Quiz App in PHP
- *
+ */
+
+// Load json file
+$questions = json_decode(file_get_contents('data/questions.json'));
+
+// counter for current question
+$counter = 0;
+
+// ensure the data was loaded as an array of objects correctly
+// if(is_object($questions[0])) {
+
+
+// Shuffle the questions into a random order
+//   shuffle($random_questions);
+// } 
+
+
+
+
+
+
+
+
+
+ /*
  * These comments are to help you get started.
  * You may split the file and move the comments around as needed.
  *
