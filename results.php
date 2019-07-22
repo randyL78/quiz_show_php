@@ -9,6 +9,9 @@ $score = 0;
 if(isset($_SESSION['score'])) {
   $score = $_SESSION['score'];
 }
-
-echo '<h1>Game Results</h1>';
-echo '<h2>Score: ' . $score . '</h2>';
+echo '<form method="post" action="play.php" class="form" >';
+  echo '<h1 class="centered full" >Game Results</h1>';
+  echo '<h2 class="centered full" >Score: ' . $score . '</h2>';
+  echo '<button type="submit" class="btn" name="page" value="1" >Play</button>';
+  echo '<button type="submit" class="btn" >Settings</button>';
+echo '</div>';
