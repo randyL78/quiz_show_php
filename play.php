@@ -2,6 +2,10 @@
 session_start();
 include 'inc/quiz.php';
 
+// current question
+$question;
+
+// set the page color theme
 $theme = 'normal';
 if(isset($_POST['theme'])) {
     $theme = filter_input(INPUT_POST, 'theme', FILTER_SANITIZE_STRING);
@@ -23,6 +27,7 @@ if(isset($_POST['correct']) && isset($_POST['answer'])) {
         $correct = true;
     }
 
+    // display alert banner with appropriate message
     include 'inc/notification.php';
 }
 
@@ -38,7 +43,10 @@ if(isset($_POST['page'])) {
 if ($number === 1) {
     $_SESSION['score'] = 0;
     shuffle($questions);
-    $_SESSION['questions'] = $questions;   
+    $_SESSION['questions'] = $questions;  
+    $question = $questions[0]; 
+} else {
+    $question = $_SESSION['questions'][$number - 1];
 }
 
 // if the current question is higher than the total display the
@@ -57,34 +65,34 @@ $third;
 switch (rand(0, 5)) {
 
     case 0:
-        $first  = $questions[$number - 1]->correctAnswer;
-        $second = $questions[$number - 1]->firstIncorrectAnswer;
-        $third  = $questions[$number - 1]->secondIncorrectAnswer;
+        $first  = $question->correctAnswer;
+        $second = $question->firstIncorrectAnswer;
+        $third  = $question->secondIncorrectAnswer;
         break;
     case 1:
-        $first  = $questions[$number - 1]->correctAnswer;
-        $second = $questions[$number - 1]->secondIncorrectAnswer;
-        $third  = $questions[$number - 1]->firstIncorrectAnswer;
+        $first  = $question->correctAnswer;
+        $second = $question->secondIncorrectAnswer;
+        $third  = $question->firstIncorrectAnswer;
         break;
     case 2:
-        $first  = $questions[$number - 1]->secondIncorrectAnswer;
-        $second = $questions[$number - 1]->correctAnswer;
-        $third  = $questions[$number - 1]->firstIncorrectAnswer;
+        $first  = $question->secondIncorrectAnswer;
+        $second = $question->correctAnswer;
+        $third  = $question->firstIncorrectAnswer;
         break;
     case 3:
-        $first  = $questions[$number - 1]->secondIncorrectAnswer;
-        $second = $questions[$number - 1]->firstIncorrectAnswer;
-        $third  = $questions[$number - 1]->correctAnswer;
+        $first  = $question->secondIncorrectAnswer;
+        $second = $question->firstIncorrectAnswer;
+        $third  = $question->correctAnswer;
         break;
     case 4:
-        $first  = $questions[$number - 1]->firstIncorrectAnswer;
-        $second = $questions[$number - 1]->secondIncorrectAnswer;
-        $third  = $questions[$number - 1]->correctAnswer;
+        $first  = $question->firstIncorrectAnswer;
+        $second = $question->secondIncorrectAnswer;
+        $third  = $question->correctAnswer;
         break;
     case 5:
-        $first  = $questions[$number - 1]->firstIncorrectAnswer;
-        $second = $questions[$number - 1]->correctAnswer;
-        $third  = $questions[$number - 1]->secondIncorrectAnswer;
+        $first  = $question->firstIncorrectAnswer;
+        $second = $question->correctAnswer;
+        $third  = $question->secondIncorrectAnswer;
         break;
 }
 
@@ -94,10 +102,10 @@ echo '<div class="container">';
     echo '<div id="quiz-box">';
 
         echo '<p class="breadcrumbs">Question ' . ($number) . ' of ' . $total . '</p>';
-        echo '<p class="quiz">What is ' . $questions[$number - 1]->leftAdder . ' + ' . $questions[$number - 1]->rightAdder . '?</p>';
+        echo '<p class="quiz">What is ' . $question->leftAdder . ' + ' . $question->rightAdder . '?</p>';
         echo '<form action="play.php" method="post">';
             echo '<input type="hidden" name="page" value="' . ($number + 1) . '" />';
-            echo '<input type="hidden" name="correct" value="' . $questions[$number - 1]->correctAnswer  . '" />';
+            echo '<input type="hidden" name="correct" value="' . $question->correctAnswer  . '" />';
             echo '<input type="submit" class="btn" name="answer" value="' . $first . '" />';
             echo '<input type="submit" class="btn" name="answer" value="' . $second . '" />';
             echo '<input type="submit" class="btn" name="answer" value="' . $third . '" />';
