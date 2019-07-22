@@ -7,4 +7,6 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="<?php $theme ?>">
+<?php 
+  echo '<body class="' . $theme . '" >';
+?>

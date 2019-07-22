@@ -105,3 +105,79 @@ legend {
   width: calc(100% - 40px);
   text-align: left;
 }
+
+.alert {
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  top: 4em;
+  width: 400px;
+  left: calc(50% - 200px);
+  right: calc(50% - 200px);
+  padding: .5em;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.success {
+  background: #292;
+}
+
+.warning {
+  background: #822;
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  right: .5em;
+}
+
+.colorful {
+  background: rgb(166, 223, 213);
+}
+
+.colorful .success {
+  background: #5ff;
+  color: rgb(18, 59, 39);
+}
+
+.colorful .warning {
+  background: #f3e;
+  color: rgb(18, 59, 39);
+}
+
+.colorful .btn {
+  color: rgb(166, 223, 213);
+  background-color: rgb(18, 59, 39);
+}
+
+.colorful .btn:hover {
+  color: rgb(18, 59, 39);
+  background-color: rgb(166, 223, 213);
+}
+
+.dark {
+  background: rgb(30, 31, 28);
+  color: rgb(146, 171, 226);
+}
+
+.dark .btn {
+  background:rgb(146, 171, 226); 
+  color: rgb(30, 31, 28);
+}
+
+.dark .btn:hover {
+  background: rgb(30, 31, 28);
+  color: rgb(146, 171, 226);
+}
+
+.dark .success {
+  background: #3d6;
+  color: #446
+}
+
+.dark .warning {
+  background: #e63;
+  color: #433;
+}

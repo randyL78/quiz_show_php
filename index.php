@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+$theme = $_SESSION['theme'];
+
 include 'inc/header.php';
 ?>
 
