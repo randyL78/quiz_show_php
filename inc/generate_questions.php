@@ -31,7 +31,7 @@ function getGeneratedQuestions() {
         $secondIncorrectAnswer === $firstIncorrectAnswer
     );
 
-
+    // cast to object to mimic json file
     $generatedQuestions[] = (object)[
       "leftAdder" => $leftAdder,
       "rightAdder" => $rightAdder,
