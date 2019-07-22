@@ -2,6 +2,15 @@
 session_start();
 include 'inc/quiz.php';
 
+// counter for current question
+$counter = 0;
+
+// the total number of questions in the quiz
+$total = 0;
+
+// the current question number
+$number = 1;
+
 // current question
 $question;
 
@@ -12,6 +21,15 @@ if(isset($_POST['theme'])) {
     $_SESSION['theme'] = $theme;
 } else {
     $theme = $_SESSION['theme'];
+}
+
+// set the game mode
+$mode = 'standard';
+if(isset($_POST['mode'])) {
+    $mode = filter_input(INPUT_POST, 'mode', FILTER_SANITIZE_STRING);
+    $_SESSION['mode'] = $mode;
+} else {
+    $mode = $_SESSION['mode'];
 }
 
 // check if an answer is set and if correct increment score
@@ -42,11 +60,14 @@ if(isset($_POST['page'])) {
 // if on the first page, set the score to 0 and shuffle the array
 if ($number === 1) {
     $_SESSION['score'] = 0;
+    $questions = getQuestions($mode);
     shuffle($questions);
-    $_SESSION['questions'] = $questions;  
+    $_SESSION['questions'] = $questions;
     $question = $questions[0]; 
+    $total = count($questions);
 } else {
     $question = $_SESSION['questions'][$number - 1];
+    $total = count($_SESSION['questions']);
 }
 
 // if the current question is higher than the total display the
